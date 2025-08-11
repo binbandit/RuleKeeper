@@ -12,7 +12,7 @@ import type {
 const MM_OPTS = { dot: true, nocase: false } as const;
 
 function pathMatches(globs: string[] | undefined, file: string): boolean {
-  if (!globs || globs.length === 0) return true; // no filter → include all
+  if (!globs || globs.length === 0) return true;
   return globs.some((g) => minimatch(file, g, MM_OPTS));
 }
 

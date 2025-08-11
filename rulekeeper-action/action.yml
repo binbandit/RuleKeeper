@@ -1,6 +1,6 @@
 name: "RuleKeeper"
 description: "Tiny PR guardrails: size budgets, tickets, screenshots."
-author: "YOUR NAME"
+author: "RuleKeeper Team"
 runs:
   using: "node20"
   main: "dist/index.js"

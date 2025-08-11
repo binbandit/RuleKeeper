@@ -1,6 +1,6 @@
-# RuleKeeper — Tiny PR guardrails for GitHub Actions
+# RuleKeeper — PR guardrails that keep reviews moving
 
-RuleKeeper is a zero-infra GitHub Action that enforces a few high-leverage PR rules and fails the check with a clear, single summary. It helps teams keep PRs small, traceable to tickets, and ensures screenshots/videos for UI changes.
+RuleKeeper is a lightweight GitHub Action that enforces a few simple pull request rules and posts one clear summary. It helps keep PRs small, tie changes back to tickets, and ask for screenshots when UI changes.
 
 ## Quick start
 
@@ -42,12 +42,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-3. Open a PR → the action runs and posts a single summary. Any failing rule causes the job to fail.
+3. Open a PR. The action runs and posts a single summary. If any rule fails, the job fails.
 
-## Rules reference
+## Rules
 
 - max_lines_changed
-  - Computes total additions+deletions across included files (optionally filtered by includePaths). Passes when total <= limit. Shows top 5 offenders when failing.
+  - Sums additions + deletions across changed files (optionally filtered by includePaths). Passes when total <= limit. Shows top five files when failing.
 - require_ticket
   - Ensures the PR title or branch contains your ticket pattern (JS RegExp string, e.g., `PROJ-\\d+`, `ENG-[0-9]+`).
 - require_screenshot

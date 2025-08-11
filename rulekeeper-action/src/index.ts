@@ -6,7 +6,6 @@ import { runRules } from "./rules.js";
 
 async function main() {
   try {
-    // Ensure PR event
     const payload = github.context.payload;
     if (!payload.pull_request) {
       core.setFailed("RuleKeeper: this action only runs on pull_request events.");
@@ -46,8 +45,6 @@ async function main() {
 
     const ctx = { title, branch, body };
     const results = runRules(cfgRes.value.rules, ctx, files);
-
-    // Build summary
     const anyFail = results.some((r) => !r.ok);
     const summary = core.summary;
     await summary.addHeading("RuleKeeper");

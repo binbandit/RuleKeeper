@@ -6,18 +6,18 @@ export interface BaseRule {
 
 export interface MaxLinesChangedRule extends BaseRule {
   type: "max_lines_changed";
-  limit: number; // integer > 0
-  includePaths?: string[]; // minimatch globs
+  limit: number;
+  includePaths?: string[];
 }
 
 export interface RequireTicketRule extends BaseRule {
   type: "require_ticket";
-  pattern: string; // JS RegExp string (no slashes)
+  pattern: string;
 }
 
 export interface RequireScreenshotRule extends BaseRule {
   type: "require_screenshot";
-  whenPaths: string[]; // if any changed path matches, require screenshot
+  whenPaths: string[];
 }
 
 export type AnyRule = MaxLinesChangedRule | RequireTicketRule | RequireScreenshotRule;
