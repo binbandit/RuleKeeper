@@ -1,0 +1,11 @@
+name: "RuleKeeper"
+description: "Tiny PR guardrails: size budgets, tickets, screenshots."
+author: "YOUR NAME"
+runs:
+  using: "node20"
+  main: "dist/index.js"
+inputs:
+  config:
+    description: "Path to rulekeeper config"
+    required: false
+    default: ".github/rulekeeper.yml"
