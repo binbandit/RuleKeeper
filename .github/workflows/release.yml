@@ -1,0 +1,23 @@
+name: release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  verify-action-dist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify dist exists
+        run: |
+          if [ ! -f rulekeeper-action/dist/index.js ]; then
+            echo "dist/index.js is missing. Build and commit the bundled action before releasing." >&2
+            exit 1
+          fi
+          echo "dist/index.js found."
+      - name: Print action.yml main
+        run: |
+          yq -r '.runs.main' rulekeeper-action/action.yml || grep -E '^\s*main:\s' -n rulekeeper-action/action.yml || true
