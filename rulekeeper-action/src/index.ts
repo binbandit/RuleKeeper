@@ -84,5 +84,4 @@ function escapePipes(s: string): string {
   return s.replace(/\|/g, "\\|");
 }
 
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-main();
+void main();

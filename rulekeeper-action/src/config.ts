@@ -78,10 +78,8 @@ export async function loadConfig(configPath: string): Promise<ValidationResult<C
           res.errors.push(`rules[${idx}].pattern must be a non-empty string.`);
           return;
         }
-        // Validate regex compiles
         try {
-          // eslint-disable-next-line no-new
-          new RegExp(pattern);
+          const _re = new RegExp(pattern);
         } catch {
           res.errors.push(`rules[${idx}].pattern must be a valid JavaScript RegExp (without slashes).`);
           return;
