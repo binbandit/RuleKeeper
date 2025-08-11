@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: rulekeeper-action/package.json
+      - name: Install deps
+        working-directory: rulekeeper-action
+        run: npm ci || npm install
+      - name: Lint
+        working-directory: rulekeeper-action
+        run: |
+          if [ -f .eslintrc.js ] || [ -f .eslintrc.cjs ] || [ -f .eslintrc.json ]; then
+            npm run lint
+          else
+            echo "No ESLint config, skipping"
+          fi
+      - name: Test
+        working-directory: rulekeeper-action
+        run: npm test
+      - name: Build
+        working-directory: rulekeeper-action
+        run: npm run build
