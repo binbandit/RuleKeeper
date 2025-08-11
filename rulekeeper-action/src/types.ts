@@ -44,11 +44,11 @@ export interface RuleResult {
   ok: boolean;
   rule: AnyRule;
   name: string;
-  details: string[]; // multiple lines of details to render under the table cell
+  details: string[];
 }
 
 export interface PRContextInfo {
   title: string;
-  branch: string; // head ref
+  branch: string;
   body: string | null | undefined;
 }

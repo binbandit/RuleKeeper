@@ -22,7 +22,6 @@ describe("rules.max_lines_changed", () => {
 
   it("respects includePaths", () => {
     const r = evaluateMaxLinesChanged({ type: "max_lines_changed", limit: 300, includePaths: ["ui/**"] }, files);
-    // ui deltas: (480+35) + (50+5) = 570
     expect(r.ok).toBe(false);
   });
 });
